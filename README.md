@@ -13,43 +13,59 @@ Também é possível utilizar o pacote awslocal, que utilizará host, porta e pr
 
 ## Criar configuração - profile default  
 
-> aws configure  
+```bash
+aws configure  
     AWS Access Key ID [None]: fakeAccessKeyId
     AWS Secret Access Key [None]: fakeSecretAccessKey
     Default region name [None]: sa-east-1
     Default output format [None]: json
+```
 
 ## Criar configuração - profile coruja  
 
-> aws configure --profile coruja
+```bash
+aws configure --profile coruja
+```
 
 ## Criar secret no secret manager  
 
-> aws --endpoint http://localhost:4566 secretsmanager \
+```bash
+aws --endpoint http://localhost:4566 secretsmanager \
     create-secret --name databasePassword \
     --description "Segredo para efetuar um teste com LocalStack" \
     --secret-string "db123" \
     --region sa-east-1
+```
 
 ## Listar identity do profile  
 
-> aws --endpoint http://localhost:4566 sts get-caller-identity  
+```bash
+aws --endpoint http://localhost:4566 sts get-caller-identity  
+```
 
 ## Criar bucket S3  
 
-> aws --endpoint http://localhost:4566 s3 mb s3://coruja  
+```bash
+aws --endpoint http://localhost:4566 s3 mb s3://coruja  
     make_bucket: coruja
+```
 
 ## Adicionar arquivo ao bucket S3  
 
-> aws --endpoint http://localhost:4566 s3 cp coruja.txt s3://coruja   
+```bash
+aws --endpoint http://localhost:4566 s3 cp coruja.txt s3://coruja   
     upload: ./coruja.txt to s3://coruja/coruja.txt
+```
 
 ## Listar arquivos do bucket S3  
 
-> aws --endpoint http://localhost:4566 s3 ls s3://coruja  
+```bash
+aws --endpoint http://localhost:4566 s3 ls s3://coruja  
+```
 
 ## Download de um arquivo do bucket S3  
 
-> aws --endpoint http://localhost:4566 s3 cp s3://coruja/coruja.txt tmp   
+```bash
+aws --endpoint http://localhost:4566 s3 cp s3://coruja/coruja.txt tmp   
     download: s3://coruja/coruja.txt to tmp/coruja.txt
+```
